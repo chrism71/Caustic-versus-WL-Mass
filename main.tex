@@ -1,0 +1,198 @@
+%% Stacked C4 Mass--Richness Paper, May 2015
+%% Nicholas Kern, Daniel Gifford, Christopher Miller
+%% University of Michigan
+
+%% Document Class
+\documentclass[apj]{emulateapj}
+
+%% Document Preamble
+% Packages
+\usepackage{graphicx}			% Graphics
+\usepackage{natbib}				% Bibliography
+\usepackage{amsmath}			% Equations
+\usepackage[backref,breaklinks,colorlinks,citecolor=blue]{hyperref}		% References
+\renewcommand*{\backref}[1]{[#1]}	
+\usepackage[all]{hypcap}			% Workaround for hyperref
+\usepackage{cleveref}			% Better than autoref
+\usepackage{indentfirst}	
+\usepackage{fancyhdr}			% Header and Footer
+\usepackage{amssymb}			% More symbols
+%\usepackage{stfloats}			% For Figures on bottom of page
+%\usepackage{deluxetable}
+\usepackage{rotating}			% Rotated figures
+\usepackage{fixltx2e}					% Used fix Latex Corrections
+
+%% Begin Document
+\begin{document}
+%\submitted{Submitted: \today}
+\title{The Concordance Between Dynamical and Shear Inferred Galaxy Cluster Masses}
+
+\author{Christopher J. Miller\altaffilmark{1,2}, Wentao Luo\altaffilmark{3} \and Vitali Halenka\altaffilmark{3}}
+\altaffiltext{1}{Department of Astronomy, University of Michigan, Ann Arbor, MI 48109 USA}
+\altaffiltext{2}{Department of Physics, University of Michigan, Ann Arbor, MI 48109, USA}
+\altaffiltext{3}{School of Physics and Astronomy, Shanghai Jiao Tong University, Shanghai, 200240, P. R. China }
+\email{christoq@umich.edu}
+
+
+%% Abstract %%
+\begin{abstract}
+
+We employ a sample of XXX low-redshift ($z \le 0.3$) galaxy clusters to compare stacked weak-lensing masses ($M_{WL}$) to stacked dynamical masses using the caustic technique ($M_{dyn}$). Our sample is large enough to infer ensemble masses to 15\% precision over nearly two orders of magnitude ($10^{13} <~     $M$_{\odot}h^{-1} < 10^{15}$). We find $\Delta(lnM_{dyn} - lnM_{WL}) = 0.04 \pm{0.085}$, including both statistical and observational systematic uncertainties. We find no significant mass-dependent deviation from a one-to-one relationship between these two independent mass measures. If we center the clusters on the brightest central galaxy (BCG) instead of the peaks in the galaxy over-densities, we find $\Delta(lnM_{dyn} - lnM_{WL}) = 0.1 \pm{0.1}$. Previous simulations have shown that ensemble caustic masses are unbiased ($<5$\%) for well-sampled phase-spaces and that weak-lensing masses are minimally biased (5-10\%) for shallow ground-based surveys. After accounting for these known additional systematic errors, we conclude that there is no significant bias between dynamically inferred and weak-lensing inferred cluster masses.
+\end{abstract}
+
+\maketitle
+%% Begin Paper %%
+
+
+%% Introduction
+\section{Introduction}
+Galaxy clusters are the only astrophysical object for which current instruments provide us with multiple measures of mass to the virial radius. The curved space-time around clusters shears the shapes of background galaxies. It also accelerates tracers inside the potential well, causing galaxies to accelerate and baryonic gas to heat up. All of these effects are due to the Poisson equation, which relates the gravitational potential and the matter density. Each of these processes is directly observable.
+
+Constraining cluster masses from dynamics starts with \cite{Zwicky1933} who concluded that there must be a significant amount of dark matter present in the Coma cluster to create a dispersion of $\sim$ 1000km/s by the member galaxies. On the other hand, galaxy clusters were the first astrophysical objects to be studied using the techniques of weak lensing \citep{Tyson1990}. In fact, \citet{Tyson1990} chose clusters based on the high dynamical velocity dispersion of their member galaxies. Since these seminal efforts, little progress has been made in making direct and precise comparisons between weak-lensing mass ($M_{WL}$) and dynamically inferred cluster masses ($M_{dyn}$) for reasonably large sample sizes. \cite{XPWu1998} used $\sim 24$ clusters to show that weak-lensing and strong-lensing cluster masses only have reasonable agreement for very small dark matter cores, such that $M_{WL}/M_{dyn} = 0.63 \pm{0.35}$. 
+%\citet{Diaferio2005} used two clusters and found mass differences as high as 50\%. 
+\citet{Geller2013} used 19 clusters with both weak-lensing and dynamical mass profiles to show that the two agree only at the radius signifying 200$\times$ the critical density of the universe ($r_{200}$). Mass differences inside of this radius were as high as 50\%. 
+
+There are numerous challenges to overcome when making precision comparisons between a cluster's weak-lensing mass and its dynamical mass. The shear signal is weak and dependent on both the errors of the background galaxy shapes as well as on the number of visible background galaxies \citep{Bartelmann2001}. Dynamically, the velocity dispersion requires large samples and fair sampling to avoid tracer biases \citep{Evrard2008, Saro2013, Gifford2013, Carlberg1994,Biviano2006,Wu2013, Biviano1992,Gifford2013, Munari2014, Bayliss2017}. Dynamical equilibrium is also an issue for utilizing the velocity dispersion as a mass proxy. 
+
+The solution to the statistical challenges include the use of stacking techniques to create ensemble clusters.  These ensembles have much higher signal-to-noise observables \citep{Rozo2011,Gifford2017}. To avoid known challenges with the velocity dispersion,  can use the escape velocity (or ``caustic'') technique to infer dynamical masses. The caustic technique has been shown to be free of tracer velocity bias and like weak-lensing, is independent of the dynamical state of the cluster \citep{Miller2016, Diaferio97, Diaferio99}. 
+
+In this paper we conduct the first joint stacked analysis of clusters using weak-lensing and phase-space caustics. Our sample is at low redshift ($z \le 0.15$) and significantly larger than any previous analysis (417 clusters). By stacking these systems based on their richness, we are able to achieve good precision ($<$15\%) on the ensemble cluster masses, thus enabling a significant advance in the concordance between weak-lensing and dynamical cluster masses. In Section \ref{sec:ensembles} we discuss how we build the ensemble clusters. In Section \ref{sec:masses} we report the ensemble masses and their uncertainties. In Section \ref{sec:results} we make the direct comparison using various statistical techniques.
+
+\section{The Cluster Ensembles}
+
+Individual cluster measurements of the dynamical mass or the weak-lensing mass are noisy. Therefore, this work makes use of the precision gained from measurements of stacked (or ensemble) clusters \citep{Rozo2011, Saro2013, Gifford2017}. While the weak-lensing signal is too small to be detected for the majority of our cluster sample, we do have constraints on the individual dynamical masses from the cluster radius-velocity phase-spaces. Ideally, we would be able to create ensemble clusters by stacking on clusters within bins based on the dynamical masses. However the caustic masses are very noisy with individual uncertainties ranging from 0.3 to 0.9 dex \citep{Gifford2013}. These large mass uncertainties cause clusters to scatter up and down into mass bins different from where they should be. Instead, we use a low-scatter mass proxy to bin the clusters for the ensembles. As is common for cluster weak-lensing studies, we use richness \citep{Rozo2011, Wiesner15, Saro15, Melchior17}. 
+
+We fit the mass-richness relation using a similar algorithm to \citet{Andreon2010}. The vast majority of the cluster sample is defined using the SDSS DR12 and the SDSS-C4 algorithm \citep{DR12a,DR12b, Miller2005}. We use clusters within $0.02 \le z \le 0.13$ and with a minimum of 10 spectroscopically confirmed members. The mean number of members for the SDSS-C4 sample is 33 with a mean mass within $r_{200}$ of $\langle m_{200} \rangle = 1.6\times10^{14}h^{-1}$M$_{\odot}$. We also include an additional 23 clusters in the range $0.07 \le z \le 0.3$ in the SDSS DR12 footprint from \citet{Stark2017}. These clusters fill out the massive end of the sample with $\langle m_{200} \rangle = 9.5\times10^{14}h^{-1}$M$_{\odot}$ have their own spectroscopic follow-up data available in the literature.
+
+The dynamical masses are determined using the caustic technique \citep{Gifford2013, Diaferio97, Diaferio99}. Briefly, the caustic technique determines cluster masses according to:
+\begin{equation}
+GM(<r_{200}) = \mathcal{F}_{\beta} \int^{r_{200}}_{0} v_{los,esc}^2(r') dr'
+\label{eq:caustic_eq}
+\end{equation}
+where $v_{los,esc}$ is the line-of-sight escape edge defined using the radius-velocity phase-space data. $\mathcal{F}_{\beta}$ defines the calibration term, which depends on the velocity anisotropy  $\beta (r) = 1 - (v_{\theta}^2 + v_{\phi}^2) / v_{r}^{2}$. and the ratio of density over the gravitational potential. In this work, we utilize the \citet{NFW} form to describe the cluster density profiles \citep{Diaferio99, Gifford2017}. Thus, we can write the caustic calibration term as 
+\begin{equation} \label{eq:avgfb_nfw}
+\mathcal{F}_{\beta,NFW}(r) = \frac{c^{2} s^2}{2 \ln (1 + cs) (1+cs)^2} \frac{3-2\beta (r)}{1-\beta (r)},
+\end{equation}
+
+We restrict fitting the mass-richness relation to those clusters with caustic masses greater than  $h^{-1}10^{13}$M$_{\odot}$.
+
+\label{sec:ensembles}
+\begin{figure*}
+\plottwo{Figures/mcaus_v_nobs.png}{Figures/mcaus_v_N200.png}
+\caption{{\bf Left:} the dynamical ``caustic'' masses versus the observed background subtracted galaxy count. The errors on the mass are determined from simulations. The errors on the counts are Poisson. The red dots are identified as outliers in the Bayesian analysis. {\bf Right:} the statistically inferred mass versus richness within a radius where the density is $200\times$ the critical density. The four colors represent the bins in the cluster data richnesses as sampled statistically from the mass-relation. These are the clusters we use to create the ensembles.}
+\label{fig:mass_richness}
+\end{figure*}
+
+\section{Ensemble Masses}
+
+\label{sec:masses}
+\begin{figure*}
+\plotone{Figures/esdwl.eps}
+\caption{The weak-lensing shear inferred cosmologically evolved mass msurface densities (ESD) for the four richness bins. These show the average ESDs over multiple statistical samples from the mass-richness relation shown in Figure \ref{fig:mass_richness}. The dotted lines shows the 2-halo term. Richness is increasing from (a) to (d).}
+\label{fig:mass_wl}
+\end{figure*}
+
+\begin{figure*}
+\plotone{Figures/phase_spaces_ab.png}
+\plotone{Figures/phase_spaces_cd.png}
+\caption{}
+\label{fig:phase_spaces}
+\end{figure*}
+
+\section{Results}
+\label{sec:results}
+
+\subsection{Cluster Centering}
+Cluster centering can affect the weak-lensing mass ensemble masses in two ways, both of which suppress the inferred mass. First, mis-identification of the cluster centers result in a random noise contributing to the stack. The second effect is caused by centering offsets from the true underlying halo dark matter peak. The former (better characterized as cluster impurities) occurs when the cluste center cluster is far away ($\sim > 0.5Mpc$) from the where any  nominal observational measure would put the cluster. Mis-centering is best controlled through a pure sample of galaxy clusters \citep{Miller2005}.  The latter is more statistical in that when a cluster is identified, the precise ``center'' is still difficult to define and/or measure. 
+
+Cluster centering offsets are a challenging issue, given that current instrument limits our ability to make high signal-to-noise 2D maps of the underlying dark matter \citep{vonderLinden2014,Umetsu14}. As an example, the brightest ``central'' galaxy (BCG) is often used (and assumed) to identify the center of a galaxy cluster, yet simulations and data show that up to 30\% of halos have non-BCGs at the center of their dark matter peaks \citep{Skibba10, Zitrin12, vanUitert16}.
+
+
+\begin{figure*}
+\plotone{Figures/mdyn_v_mwl.png}
+\caption{}
+\label{fig:results}
+\end{figure*}
+
+\begin{thebibliography}{42}
+%\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\bibitem[Alam et al.(2015)]{DR12a} Alam, S., Albareti, F.~D., Allende Prieto, C., et al.\ 2015, \apjs, 219, 12 
+
+
+\bibitem[Andreon \& Hurn(2010)]{Andreon2010} Andreon, S., \& Hurn, M.~A.\ 2010, \mnras, 404, 1922 
+
+
+\bibitem[Bartelmann \& Schneider(2001)]{Bartelmann2001} Bartelmann, M., \& Schneider, P. 2001, \physrep, 340, 291 
+
+\bibitem[Bayliss et al.(2017)]{Bayliss2017} Bayliss, M.~B., Zengo, K., Ruel, J., et al. 2017, \apj, 837, 88 
+
+\bibitem[Biviano et al.(1992)]{Biviano1992} Biviano, A., Girardi, M., Giuricin, G., Mardirossian, F., \& Mezzetti, M.\ 1992, \apj, 396, 35 
+
+\bibitem[Biviano et al.(2006)]{Biviano2006} Biviano, A., Murante, G., Borgani, S., et al. 2006, Astronomy and Astrophysics, 456, 23 
+
+\bibitem[Carlberg(1994)]{Carlberg1994} Carlberg, R.G.\ 1994, \apj, 433, 468 
+
+\bibitem[Diaferio \& Geller(1997)]{Diaferio97} Diaferio, A., \& Geller, M.~J.\ 1997, \apj, 481, 633 
+
+\bibitem[Diaferio(1999)]{Diaferio99} Diaferio, A.\ 1999, \mnras, 309, 610 
+
+\bibitem[Diaferio et al.(2005)]{Diaferio2005} Diaferio, A., Geller, M.~J., \& Rines, K.~J.\ 2005, \apjl, 628, L97 
+
+\bibitem[Eisenstein et al.(2011)]{DR12b} Eisenstein, D.~J., Weinberg, D.~H., Agol, E., et al.\ 2011, \aj, 142, 72 
+
+
+\bibitem[Evrard et al.(2008)]{Evrard2008} Evrard, A.E., Bialek, J., Busha, M., et al.\ 2008, \apj, 672, 122 
+
+\bibitem[Geller et al.(2013)]{Geller2013} Geller, M.~J., Diaferio, A., Rines, K.~J., \& Serra, A.~L.\ 2013, \apj, 764, 58 
+
+
+\bibitem[Gifford et al.(2013)]{Gifford2013} Gifford, D., Miller, C., \& Kern, N.\ 2013, \apj, 773, 116 
+
+\bibitem[Gifford et al.(2017)]{Gifford2017} Gifford, D., Kern, N., \& Miller, C.~J.\ 2017, \apj, 834, 204 
+
+\bibitem[Lange et al.(2018)]{Lange18} Lange, J.~U., van den Bosch, F.~C., Hearin, A., et al.\ 2018, \mnras, 473, 2830 
+
+\bibitem[Melchior et al.(2017)]{Melchior17} Melchior, P., Gruen, D., McClintock, T., et al.\ 2017, \mnras, 469, 4899 
+
+\bibitem[Miller et al.(2005)]{Miller2005} Miller, C.~J., Nichol, R.~C., Reichart, D., et al.\ 2005, \aj, 130, 968 
+
+\bibitem[Miller et al.(2016)]{Miller2016} Miller, C.~J., Stark, A., Gifford, D., \& Kern, N.\ 2016, \apj, 822, 41 
+
+\bibitem[Munari et al.(2014)]{Munari2014} Munari, E., Biviano, A., \& Mamon, G.~A.\ 2014, \aap, 566, A68 
+
+\bibitem[Navarro et al.(1997)]{NFW} Navarro, J.~F., Frenk, C.~S., \& White, S.~D.~M.\ 1997, \apj, 490, 493 
+
+\bibitem[Rozo et al.(2011)]{Rozo2011} Rozo, E., Wu, H.-Y., \& Schmidt, F.\ 2011, \apj, 735, 118 
+
+\bibitem[Saro et al.(2013)]{Saro2013} Saro, A., Mohr, J.~J., Bazin, G., \& Dolag, K.\ 2013, \apj, 772, 47 
+
+\bibitem[Saro et al.(2015)]{Saro15} Saro, A., Bocquet, S., Rozo, E., et al.\ 2015, \mnras, 454, 2305 
+
+\bibitem[Skibba et al.(2010)]{Skibba10} Skibba, R.~A., van den Bosch, F., Yang, X., et al.\ 2010, Bulletin of the American Astronomical Society, 42, 330.02 
+
+\bibitem[Stark et al.(2017)]{Stark2017} Stark, A., Miller, C.~J., \& Halenka, V.\ 2017, arXiv:1711.10018 
+
+\bibitem[Tyson et al.(1990)]{Tyson1990} Tyson, J.~A., Valdes, F., \& Wenk, R.~A.\ 1990, \apjl, 349, L1 
+
+\bibitem[Umetsu et al.(2014)]{Umetsu14} Umetsu, K., Medezinski, E., Nonino, M., et al.\ 2014, \apj, 795, 163 
+
+
+\bibitem[van Uitert et al.(2016)]{vanUitert16} van Uitert, E., Gilbank, D.~G., Hoekstra, H., et al.\ 2016, \aap, 586, A43 
+
+\bibitem[von der Linden et al.(2014)]{vonderLinden2014} von der Linden, A., Allen, M.~T., Applegate, D.~E., et al.\ 2014, \mnras, 439, 2 
+
+\bibitem[Wiesner et al.(2015)]{Wiesner15} Wiesner, M.~P., Lin, H., \& Soares-Santos, M.\ 2015, \mnras, 452, 701 
+
+\bibitem[Wu et al.(2013)]{Wu2013} Wu, H.-Y., Hahn, O., Evrard, A.~E., Wechsler, R.~H., \& Dolag, K. 2013, \mnras, 436, 460 
+
+\bibitem[Wu et al.(1998)]{XPWu1998} Wu, X.-P., Chiueh, T., Fang, L.-Z., \& Xue, Y.-J.\ 1998, \mnras, 301, 861 
+
+\bibitem[Zitrin et al.(2012)]{Zitrin12} Zitrin, A., Bartelmann, M., Umetsu, K., Oguri, M., \& Broadhurst, T.\ 2012, \mnras, 426, 2944 
+
+\bibitem[Zwicky(1933)]{Zwicky1933} Zwicky, F.\ 1933, Helvetica Physica Acta, 6, 110 
+
+\end{thebibliography}
+
+\end{document}
+
+
